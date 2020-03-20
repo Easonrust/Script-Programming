@@ -1,0 +1,68 @@
+body {
+    background-color: orange;
+}
+
+h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(145, 129, 214)
+}
+
+h2 {
+    font-family: fantasy;
+    color: red
+}
+
+p {
+    font-size: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(165, 52, 175)
+}
+
+p:first-letter {
+    font-size: 22.5px;
+}
+
+ul {
+    font-size: larger;
+    font-family: monospace;
+    color: rgb(51, 134, 190)
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+a:visited {
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+a:active {
+    text-decoration: underline;
+}
+
+dt {
+    color: green;
+    font-size: large;
+}
+
+dd {
+    color: rgb(235, 235, 209);
+    font-size: medium;
+}
+
+ol {
+    list-style: none;
+    counter-reset: line 4;
+}
+
+ol>li:before {
+    counter-increment: line -1;
+    content: counter(line)".";
+}
