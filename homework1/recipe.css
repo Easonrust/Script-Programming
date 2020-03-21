@@ -1,10 +1,43 @@
-h1,h2{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    background-color: rgb(209, 206, 206);
-    text-align: center;
+h1,
+h2 {
+    font-family: 'Lucida Sans Unicode', Helvetica, Arial, sans-serif;
+    background-color: #F0F0F0;
     text-decoration: underline;
-    color:rgb(140, 167, 66);
+    color: #A4A400;
 }
-.comment1, .comment2, .comment3{
-    background-color: rgba(255, 255, 0, 0.486);
+
+h1 {
+    text-align: center;
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: left;
+    font-size: 18pt;
+    font-weight: normal;
+}
+
+body {
+    background-color: white;
+    color: #404040;
+    font-size: 11pt;
+    font-family: Georgia, Garamond, serif;
+}
+
+a {
+    color: #A4A400;
+}
+
+
+.comment {
+    font-style: italic;
+    margin-left: 48px;
+    margin-right: 48px;
+    background-color: #FFFFA8;
+}
+
+.comment span,
+ol span {
+    font-weight: bold;
 }
