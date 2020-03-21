@@ -1,0 +1,76 @@
+body {
+    background-image: url("img/background.jpg");
+    background-position: 50% 40%;
+    background-attachment: fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    font-family: fantasy;
+    text-align: center;
+    font-size: 3em;
+}
+
+h2 {
+    font-family: sans-serif;
+    font-style: italic;
+    text-align: center;
+}
+
+.pie,
+.intro,
+.pieIntro {
+    text-align: center;
+}
+
+.pie {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.intro {
+    font-family: monospace;
+    font-size: 15px;
+    color: black;
+}
+
+.intro:first-letter {
+    font-size: 22.5px;
+}
+
+.pieIntro {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22.5px;
+    color: rgb(146, 140, 140);
+}
+
+.pieIntro:first-letter {
+    font-size: 34px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+a:visited {
+    text-decoration: none;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+a:active {
+    text-decoration: underline;
+}
+
+.BigWord {
+    font-family: fantasy;
+    font-size: 6em;
+    font-style: oblique;
+    text-align: center;
+    color: goldenrod;
+}
