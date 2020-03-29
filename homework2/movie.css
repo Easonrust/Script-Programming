@@ -1,0 +1,134 @@
+body {
+    background-image: url("http://sse.tongji.edu.cn/liangshuang/wp/images/moviebg.png");
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 10pt;
+}
+
+#banner {
+    background-image: url("http://sse.tongji.edu.cn/liangshuang/wp/images/rancidbannerbg.png");
+    height: 50px;
+    text-align: center;
+}
+
+#banner img {
+    height: 50px;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 24pt;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', serif;
+    text-shadow: 3px 3px #999999;
+}
+
+#content {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px gray;
+    overflow: hidden;
+
+    background-color: #eeeeee;
+}
+
+#reviews {
+    float: right;
+    width: 550px;
+   
+    margin-bottom: 0px;
+}
+
+.reviewContent {
+    font-size: 10pt;
+    font-family: Georgia, 'Times New Roman', serif;
+    background-color: #ffffff;
+    border: 2px solid #CCCCCC;
+    border-radius: 20px;
+    padding: 8px;
+}
+
+.reviewContent img {
+    margin-right: 5px;
+    float: left;
+}
+
+.reviewer img {
+    margin-right: 5px;
+    float: left;
+
+}
+
+.review {
+    margin-bottom: 20pt;
+    overflow: hidden;
+}
+
+#rotten {
+    background-image: url("http://sse.tongji.edu.cn/liangshuang/wp/images/rottenlargebg.png");
+    height: 83px;
+
+    font-size: 48pt;
+    color: red;
+    font-weight: bold;
+}
+
+#rotten img {
+    height: 83px;
+    vertical-align: bottom;
+}
+
+.column {
+    float: left;
+    width: 47%;
+    margin-left: 2%;
+    margin-left: 2%;
+
+}
+
+.publication {
+    font-style: italic;
+}
+
+#generalView {
+    float: right;
+    background-color: #A2B964;
+    width: 250px;
+    font-size: 10pt;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#text {
+    margin: 10pt;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-bottom: 10pt;
+}
+
+ul {
+    padding-left: 0px;
+    margin-left: 0px;
+    list-style: none;
+}
+
+#bar {
+    text-align: center;
+    background-color: #A2B964;
+    padding: 5px;
+    clear: right;
+    margin: 0px;
+}
+#validator{
+   
+    margin-left: 94.5%;
+}
