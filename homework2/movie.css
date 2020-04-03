@@ -1,3 +1,8 @@
+/*
+author: Le Yang
+Section: CSS
+Summary: CSS file for a movie page
+*/
 body {
     background-image: url("http://sse.tongji.edu.cn/liangshuang/wp/images/moviebg.png");
     font-family: Arial, Helvetica, sans-serif;
@@ -39,7 +44,6 @@ h1 {
 #reviews {
     float: right;
     width: 550px;
-   
     margin-bottom: 0px;
 }
 
@@ -50,21 +54,23 @@ h1 {
     border: 2px solid #CCCCCC;
     border-radius: 20px;
     padding: 8px;
+    overflow: hidden;
 }
 
 .reviewContent img {
     margin-right: 5px;
     float: left;
+
+}
+
+.reviewer {
+    margin-bottom: 20pt;
+    overflow: hidden;
 }
 
 .reviewer img {
     margin-right: 5px;
     float: left;
-
-}
-
-.review {
-    margin-bottom: 20pt;
     overflow: hidden;
 }
 
@@ -116,8 +122,8 @@ dd {
 }
 
 ul {
-    padding-left: 0px;
-    margin-left: 0px;
+    padding: 0px;
+    margin: 0px;
     list-style: none;
 }
 
@@ -126,9 +132,10 @@ ul {
     background-color: #A2B964;
     padding: 5px;
     clear: right;
-    margin: 0px;
+    margin-bottom: 0px;
 }
-#validator{
-   
-    margin-left: 94.5%;
+
+#validator {
+
+    text-align: right;
 }
