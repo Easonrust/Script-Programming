@@ -1,0 +1,53 @@
+#title {
+    text-align: center;
+}
+body{
+    background-color: #eaf6f6;
+    font-size: 12pt;
+    font-family: Garamondin,Garamond,serif;
+}
+#textarea{
+    width: 80%;
+    height: 100px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 36pt;
+    font-weight: bold;
+    font-family: monospace;
+    line-height: 100px;
+    border:2px solid #8EBEBE;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+.label {
+    border-bottom: 1px solid #8EBEBE;
+    font-weight: bold;
+    text-align: left;
+    padding: 2px;
+    width: 100%;
+}
+
+.area fieldset {
+    border:0;
+}
+.area{
+    display: flex;
+    justify-content: center;
+    vertical-align: top;
+}
+#inputtext{
+    background-color: #ffffff;
+    border: 1px solid gray;
+}
+button{
+    background-color: white;
+    border: 1px solid gray;
+    width: 70px;
+}
+button:disabled{
+    background-color: lightgray;
+    border: 1px solid gray;
+    width: 70px;
+}
+
