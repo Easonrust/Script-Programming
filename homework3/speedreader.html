@@ -11,7 +11,6 @@
 <body>
     <h1 id="title">SpeedReader</h1>
     <div id="textarea">
-        hello
     </div>
     <div class="area">
         <fieldset>
@@ -21,23 +20,27 @@
         </fieldset>
         <fieldset>
             <legend class="label">Speed:</legend>
-            <select>
-                <option value="171">350 wpm</option>
+            <select id="speed">
                 <option value="300">200 wpm</option>
+                <option value="200">300 wpm</option>
+                <option value="100000" selected>350 wpm</option>
+                <option value="150">400 wpm</option>
+                <option value="133">450 wpm</option>
+                <option value="120">500 wpm</option>
             </select>
         </fieldset>
         <fieldset>
             <legend class="label">Size:</legend>
             <label><input type="radio" name="size" value="medium" id="medium" checked>Medium
-                <input type="radio" name="size" value="big" id="big" >Big
+                <input type="radio" name="size" value="big" id="big">Big
                 <input type="radio" name="size" value="bigger" id="bigger">Bigger</label>
         </fieldset>
     </div>
     <div class="area">
-    <fieldset>
-        <legend class="label">Input Text:</legend>
-        <textarea id="inputtext" rows="10" cols="80"></textarea>
-    </fieldset>
+        <fieldset>
+            <legend class="label">Input Text:</legend>
+            <textarea id="inputtext" rows="10" cols="80"></textarea>
+        </fieldset>
     </div>
 </body>
 
