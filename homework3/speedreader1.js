@@ -7,6 +7,7 @@ var times = 0;
 // Start up javascript code once the page has finished loading
 window.onload = function () {
     document.getElementById("stop").disabled = true;
+    // document.getElementById("bling").onchange = blingin;
     document.getElementById("start").onclick = start;
     document.getElementById("stop").onclick = stop;
     document.getElementById("medium").onclick = medium;
@@ -17,7 +18,7 @@ window.onload = function () {
 };
 
 function start() {
-    alert("Start to run");
+    //alert("Start to run");
     var text = document.getElementById("inputtext").value;
     var words = text.split(/[ \t\n]+/);
     console.log(words);
@@ -42,6 +43,8 @@ function animation(words) {
         console.log(l2);
         if (words[i][l2 - 1] === ',' || words[i][l2 - 1] === '.' || words[l2 - 1] === ':' ||
             words[l2 - 1] === '!' || words[i][l2 - 1] === '?' || words[i][l2 - 1] === ';') {
+            //when word ends with punctions
+
             word = words[i].substring(0, l2 - 1);
             document.getElementById("textarea").innerHTML = word;
             times += 1;
@@ -61,16 +64,6 @@ function animation(words) {
 
     }
 
-}
-
-function speedchange() {
-    speed = document.getElementById("speed").value;
-    if (document.getElementById("start").disabled == true) {
-        clearInterval(myTimer);
-        var text = document.getElementById("inputtext").value;
-        var words = text.split(" ");
-        myTimer = setInterval(animation, speed, words);
-    }
 }
 
 function stop() {
@@ -94,4 +87,15 @@ function big() {
 function bigger() {
     //alert(document.getElementById("bigger").value);
     document.getElementById("textarea").style.fontSize = "60pt";
+}
+
+function speedchange() {
+    speed = document.getElementById("speed").value;
+    if (document.getElementById("start").disabled == true) {
+        clearInterval(myTimer);
+        var text = document.getElementById("inputtext").value;
+        var words = text.split(" ");
+        //restart without initial set
+        myTimer = setInterval(animation, speed, words);
+    }
 }
