@@ -30,6 +30,14 @@ function start() {
 
 }
 
+function stop() {
+    clearInterval(myTimer);
+    document.getElementById("textarea").innerHTML = "";
+    document.getElementById("inputtext").disabled = false;
+    document.getElementById("start").disabled = false;
+    document.getElementById("stop").disabled = true;
+}
+
 function animation(words) {
     var l1 = words.length;
     var l2;
@@ -73,13 +81,7 @@ function speedchange() {
     }
 }
 
-function stop() {
-    clearInterval(myTimer);
-    document.getElementById("textarea").innerHTML = "";
-    document.getElementById("inputtext").disabled = false;
-    document.getElementById("start").disabled = false;
-    document.getElementById("stop").disabled = true;
-}
+
 
 function medium() {
     //alert(document.getElementById("medium").value);
