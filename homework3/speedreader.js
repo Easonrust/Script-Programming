@@ -25,7 +25,7 @@ function start() {
     document.getElementById("start").disabled = true;
     document.getElementById("stop").disabled = false;
 
-    i = 0
+    i = 0;
     myTimer = setInterval(animation, speed, words);
 
 }
@@ -48,8 +48,8 @@ function animation(words) {
     } else {
         l2 = words[i].length;
         console.log(l2);
-        if (words[i][l2 - 1] === ',' || words[i][l2 - 1] === '.' || words[l2 - 1] === ':' ||
-            words[l2 - 1] === '!' || words[i][l2 - 1] === '?' || words[i][l2 - 1] === ';') {
+        if (words[i][l2 - 1] == ',' || words[i][l2 - 1] == '.' || words[l2 - 1] == ':' ||
+            words[l2 - 1] == '!' || words[i][l2 - 1] == '?' || words[i][l2 - 1] == ';') {
             word = words[i].substring(0, l2 - 1);
             document.getElementById("textarea").innerHTML = word;
             times += 1;
