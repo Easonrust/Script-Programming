@@ -1,10 +1,18 @@
 "use strict";
-
+/*
+Athor: Le Yang 1751894
+Summary: This assignment tests understanding of JavaScript and its interaction with HTML user interfaces. It is about creating a web page for speed reading training
+File Content: 
+speadreader.html, web page
+speedreader.css, the style sheet of web page
+speedreader.js, the JavaScript code for web page
+*/
 var myTimer;
 var speed = 171;
-var i = 0;
-var times = 0;
+var i = 0; // word number of the text
+var times = 0; //times for interval
 
+// Start up javascript code once the page has finished loading
 window.onload = function () {
     document.getElementById("stop").disabled = true;
     document.getElementById("start").onclick = Start;
@@ -16,11 +24,10 @@ window.onload = function () {
 
 };
 
+//Start the animation after pushing the start button
 function Start() {
-    alert("Start to run");
     var text = document.getElementById("inputtext").value;
     var words = text.split(/[ \n\t]+/);
-    console.log(words);
     document.getElementById("inputtext").disabled = true;
     document.getElementById("start").disabled = true;
     document.getElementById("stop").disabled = false;
@@ -30,6 +37,7 @@ function Start() {
 
 }
 
+//Start the animation after pushing the stop button
 function Stop() {
     clearInterval(myTimer);
     document.getElementById("textarea").innerHTML = "";
@@ -38,16 +46,16 @@ function Stop() {
     document.getElementById("stop").disabled = true;
 }
 
+//show the animation, decide which word of the text to show
 function Animation(words) {
-    var l1 = words.length;
-    var l2;
+    var l1 = words.length; // text length
+    var l2; // word length
     var word;
     var myDate = new Date();
     if (i == l1) {
         Stop();
     } else {
         l2 = words[i].length;
-        console.log(l2);
         if (words[i][l2 - 1] == ',' || words[i][l2 - 1] == '.' || words[l2 - 1] == ':' ||
             words[l2 - 1] == '!' || words[i][l2 - 1] == '?' || words[i][l2 - 1] == ';') {
             word = words[i].substring(0, l2 - 1);
@@ -71,6 +79,7 @@ function Animation(words) {
 
 }
 
+//change the speed
 function Speedchange() {
     speed = document.getElementById("speed").value;
     if (document.getElementById("start").disabled == true) {
@@ -81,19 +90,17 @@ function Speedchange() {
     }
 }
 
-
-
+//set the font size to medium, after user choose the medium radio
 function Medium() {
-    //alert(document.getElementById("medium").value);
     document.getElementById("textarea").style.fontSize = "36pt";
 }
 
+//set the font size to big, after user choose the big radio
 function Big() {
-    //alert(document.getElementById("big").value);
     document.getElementById("textarea").style.fontSize = "48pt";
 }
 
+//set the font size to bigger, after user choose the bigger radio
 function Bigger() {
-    //alert(document.getElementById("bigger").value);
     document.getElementById("textarea").style.fontSize = "60pt";
 }
