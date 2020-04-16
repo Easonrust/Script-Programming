@@ -4,33 +4,33 @@ var myTimer;
 var speed = 171;
 var i = 0;
 var times = 0;
-// Start up javascript code once the page has finished loading
+
 window.onload = function () {
     document.getElementById("stop").disabled = true;
-    document.getElementById("start").onclick = start;
-    document.getElementById("stop").onclick = stop;
-    document.getElementById("medium").onclick = medium;
-    document.getElementById("big").onclick = big;
-    document.getElementById("bigger").onclick = bigger;
-    document.getElementById("speed").onchange = speedchange;
+    document.getElementById("start").onclick = Start;
+    document.getElementById("stop").onclick = Stop;
+    document.getElementById("medium").onclick = Medium;
+    document.getElementById("big").onclick = Big;
+    document.getElementById("bigger").onclick = Bigger;
+    document.getElementById("speed").onchange = Speedchange;
 
 };
 
-function start() {
+function Start() {
     alert("Start to run");
     var text = document.getElementById("inputtext").value;
-    var words = text.split(/[ \t\n]+/);
+    var words = text.split(/[ \n\t]+/);
     console.log(words);
     document.getElementById("inputtext").disabled = true;
     document.getElementById("start").disabled = true;
     document.getElementById("stop").disabled = false;
 
     i = 0;
-    myTimer = setInterval(animation, speed, words);
+    myTimer = setInterval(Animation, speed, words);
 
 }
 
-function stop() {
+function Stop() {
     clearInterval(myTimer);
     document.getElementById("textarea").innerHTML = "";
     document.getElementById("inputtext").disabled = false;
@@ -38,13 +38,13 @@ function stop() {
     document.getElementById("stop").disabled = true;
 }
 
-function animation(words) {
+function Animation(words) {
     var l1 = words.length;
     var l2;
     var word;
     var myDate = new Date();
     if (i == l1) {
-        stop();
+        Stop();
     } else {
         l2 = words[i].length;
         console.log(l2);
@@ -71,29 +71,29 @@ function animation(words) {
 
 }
 
-function speedchange() {
+function Speedchange() {
     speed = document.getElementById("speed").value;
     if (document.getElementById("start").disabled == true) {
         clearInterval(myTimer);
         var text = document.getElementById("inputtext").value;
-        var words = text.split(" ");
-        myTimer = setInterval(animation, speed, words);
+        var words = text.split(/[ \n\t]+/);
+        myTimer = setInterval(Animation, speed, words);
     }
 }
 
 
 
-function medium() {
+function Medium() {
     //alert(document.getElementById("medium").value);
     document.getElementById("textarea").style.fontSize = "36pt";
 }
 
-function big() {
+function Big() {
     //alert(document.getElementById("big").value);
     document.getElementById("textarea").style.fontSize = "48pt";
 }
 
-function bigger() {
+function Bigger() {
     //alert(document.getElementById("bigger").value);
     document.getElementById("textarea").style.fontSize = "60pt";
 }
