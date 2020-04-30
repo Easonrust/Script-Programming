@@ -1,3 +1,9 @@
+/* Athor: Le Yang 1751894
+Summary: This assignment is about JavaScript's Document Object Model (DOM) and events.  It is about creating a web page for fifteen puzzle
+File Content: 
+fifteen.css, the style sheet of web page
+fifteen.js, the JavaScript code for web page
+ */
 body {
     font-family: cursive;
     font-size: 14pt;
@@ -7,7 +13,6 @@ body {
 #puzzlearea {
     width: 400px;
     height: 400px;
-    border: 5px solid black;
     margin: auto;
     position: relative;
 }
@@ -19,7 +24,9 @@ body {
     background-image: url("background.jpg");
     display: inline;
     position: absolute;
+    line-height:90px;
     font-size: 40pt;
+    text-align: center;
 }
 
 #tile_1_1 {
@@ -124,7 +131,7 @@ body {
     /* background-position: -200px -300px; */
 }
 
-#tile_4_4{
+#tile_4_4 {
     left: 300px;
-	top: 300px;
+    top: 300px;
 }

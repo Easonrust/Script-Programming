@@ -1,4 +1,10 @@
 "use strict";
+/* Athor: Le Yang 1751894
+Summary: This assignment is about JavaScript's Document Object Model (DOM) and events.  It is about creating a web page for fifteen puzzle
+File Content: 
+fifteen.css, the style sheet of web page
+fifteen.js, the JavaScript code for web page
+ */
 var blankX = 4;
 var blankY = 4;
 window.onload = function () {
@@ -15,7 +21,6 @@ window.onload = function () {
         tile.onclick = click;
         tile.onmouseover = over;
         tile.onmouseout = out;
-        this.console.log(tile.parentNode.id);
     }
     var tiles = document.querySelectorAll(".tile");
     var i = 0;
@@ -67,13 +72,13 @@ function click() {
 
 function findNode(x, y) {
     var tiles = document.querySelectorAll(".tile");
-    for(var i=0;i<tiles.length;i++){
+    for (var i = 0; i < tiles.length; i++) {
         var id = tiles[i].id;
         var location = id.split("_");
         var xi = parseInt(location[1]);
         var yi = parseInt(location[2]);
-        if(xi==x&&yi==y){
-            return(tiles[i]);
+        if (xi == x && yi == y) {
+            return (tiles[i]);
         }
     }
 }
@@ -114,23 +119,23 @@ function out() {
 function shuffle() {
     for (var i = 0; i < 1000; ++i) {
         var neighbors = [];
-        if(blankY-1>=1){
-            neighbors.push([blankX,blankY-1]);
+        if (blankY - 1 >= 1) {
+            neighbors.push([blankX, blankY - 1]);
         }
-        if(blankX-1>=1){
-            neighbors.push([blankX-1,blankY]);
+        if (blankX - 1 >= 1) {
+            neighbors.push([blankX - 1, blankY]);
         }
-        if(blankY+1<=4){
-            neighbors.push([blankX,blankY+1]);
+        if (blankY + 1 <= 4) {
+            neighbors.push([blankX, blankY + 1]);
         }
-        if(blankX+1<=4){
-            neighbors.push([blankX+1,blankY]);
+        if (blankX + 1 <= 4) {
+            neighbors.push([blankX + 1, blankY]);
         }
         var K = neighbors.length;
         var RD = Math.floor(Math.random() * K);
         var choice = neighbors[RD];
         var newid = "tile_" + blankX + "_" + blankY;
-        var tile=findNode(choice[0],choice[1]);
+        var tile = findNode(choice[0], choice[1]);
         tile.id = newid;
         blankX = choice[0];
         blankY = choice[1];
