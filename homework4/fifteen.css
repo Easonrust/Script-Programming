@@ -24,7 +24,7 @@ body {
     background-image: url("background.jpg");
     display: inline;
     position: absolute;
-    line-height:90px;
+    line-height: 90px;
     font-size: 40pt;
     text-align: center;
 }
@@ -32,103 +32,87 @@ body {
 #tile_1_1 {
     left: 0px;
     top: 0px;
-    /* background-position: 0px 0px; */
 }
 
 #tile_1_2 {
     left: 100px;
     top: 0px;
-    /* background-position: -100px 0px; */
 }
 
 #tile_1_3 {
     left: 200px;
     top: 0px;
-    /* background-position: -200px 0px; */
-
 }
 
 #tile_1_4 {
     left: 300px;
     top: 0px;
-    /* background-position: -300px 0px; */
 
 }
 
 #tile_2_1 {
     left: 0px;
     top: 100px;
-    /* background-position: 0px -100px; */
 
 }
 
 #tile_2_2 {
     left: 100px;
     top: 100px;
-    /* background-position: -100px -100px; */
 
 }
 
 #tile_2_3 {
     left: 200px;
     top: 100px;
-    /* background-position: -200px -100px; */
 
 }
 
 #tile_2_4 {
     left: 300px;
     top: 100px;
-    /* background-position: -300px -100px; */
 
 }
 
 #tile_3_1 {
     left: 0px;
     top: 200px;
-    /* background-position: 0px -200px; */
 
 }
 
 #tile_3_2 {
     left: 100px;
     top: 200px;
-    /* background-position: -100px -200px; */
 
 }
 
 #tile_3_3 {
     left: 200px;
     top: 200px;
-    /* background-position: -200px -200px; */
 
 }
 
 #tile_3_4 {
     left: 300px;
     top: 200px;
-    /* background-position: -300px -200px; */
 
 }
 
 #tile_4_1 {
     left: 0px;
     top: 300px;
-    /* background-position: 0px -300px; */
 
 }
 
 #tile_4_2 {
     left: 100px;
     top: 300px;
-    /* background-position: -100px -300px; */
 
 }
 
 #tile_4_3 {
     left: 200px;
     top: 300px;
-    /* background-position: -200px -300px; */
 }
 
 #tile_4_4 {

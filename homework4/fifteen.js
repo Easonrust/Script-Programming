@@ -37,6 +37,7 @@ window.onload = function () {
     document.getElementById("shufflebutton").onclick = shuffle;
 }
 
+//function to ckeck if player win
 function checkwin() {
     var win = true;
     for (var i = 0; i < 16; i++) {
@@ -56,6 +57,7 @@ function checkwin() {
     }
 }
 
+//function for handle the event when player click on the tile
 function click() {
     var id = this.id;
     var location = id.split("_");
@@ -70,6 +72,7 @@ function click() {
     }
 }
 
+//function for find the tile based on the location
 function findNode(x, y) {
     var tiles = document.querySelectorAll(".tile");
     for (var i = 0; i < tiles.length; i++) {
@@ -83,6 +86,7 @@ function findNode(x, y) {
     }
 }
 
+//function to check if the tile can move
 function checkmove(x, y) {
 
     var move = false;
@@ -94,6 +98,7 @@ function checkmove(x, y) {
     return move;
 }
 
+//function to handler the event when the cursor is over the tile
 function over() {
     var id = this.id;
     var location = id.split("_");
@@ -110,12 +115,14 @@ function over() {
     }
 }
 
+//handle the event when the cursor is put out of the tile
 function out() {
     this.style.cursor = "default";
     this.style.color = "black";
     this.style.borderColor = "black";
 }
 
+//shuffle algorithm
 function shuffle() {
     for (var i = 0; i < 1000; ++i) {
         var neighbors = [];
