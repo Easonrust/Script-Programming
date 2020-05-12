@@ -22,7 +22,7 @@ body {
     width: 90px;
     height: 90px;
     background-image: url("background.jpg");
-    display: inline;
+    display: inline-block;
     position: absolute;
     line-height: 90px;
     font-size: 40pt;
