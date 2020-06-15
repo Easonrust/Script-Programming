@@ -6,6 +6,9 @@
     <title>My TodoList</title>
     <meta content="initial-scale=1,maximum-scale=1,user-scalable=no,width=320px" name="viewport" />
     <link rel="stylesheet" href="TodoMVC.css">
+    <script src="model.js"></script>
+    <script src="provider.js"></script>
+    <script src="TodoMVC.js"></script>
 </head>
 
 <body>
@@ -15,29 +18,30 @@
     </div>
 
     <div class="input">
-        <input class="toggle-all" type="checkbox">
-        <input class="new-todo" type="text" placeholder="What needs to be done?" autofocus>
-        <span id="add"></span>
+        <span class="toggle-all" >&#9660</span>
+        <input id="input-content" type="text" placeholder="What needs to be done?" autofocus>
+        <button id="add">&#10010</button>
     </div>
 
     <div class="todoapp">
-        <div class="todo-list">
-            
+        <div id="todo-list">
+
         </div>
 
         <div id="count-line">
             <span class="todo-count">0 items left</span>
+            <button class="clear-completed"><label>Clear Completed</label></button>
+
+
+        </div>
+
+        <footer class="footer">
+
             <ul class="filters">
                 <li><a class="selected" style="cursor:pointer;">All</a></li>
                 <li><a class="" style="cursor:pointer;">Active</a></li>
                 <li><a class="" style="cursor:pointer;">Completed</a></li>
             </ul>
-            
-        </div>
-
-        <footer class="footer">
-
-            <button class="clear-completed"><label>Clear Completed</label></button>
         </footer>
     </div>
 
