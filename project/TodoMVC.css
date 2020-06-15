@@ -1,6 +1,7 @@
 html.body {
     margin: 0;
     padding: 0;
+
 }
 
 body {
@@ -99,38 +100,22 @@ body {
 
 #todo-list {
     background: #FCFAF2;
+    position: static;
     margin: 10px;
     padding: 10px;
     list-style: none;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)；
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
+    height: 300px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: auto;
     /*overflow: auto;*/
 }
 
-#todo-list li {
-    position: relative;
-    font-size: 20px;
-    line-height: 30px;
-    color: #6A4028;
-    border-bottom: 1px solid #B19693;
-    padding: 5px;
-    margin: 5px;
-}
 
 
 
 
-
-
-
-
-
-
-
-.completed {
-    color: #91B493;
-    text-decoration: line-through;
-}
 
 
 
@@ -157,18 +142,7 @@ body {
     font-family: Georgia;
 }
 
-.edit {
-    background: #DAC9A6;
-    height: 20px;
-    width: 80%;
-    vertical-align: middle;
-    border: 2px solid #FCFAF2;
-    font-size: 20px;
-    font-family: Georgia;
-    margin-bottom: 8px;
-    color: #535953;
-    margin-left: 55px;
-}
+
 
 
 
@@ -184,13 +158,8 @@ body {
     margin: auto;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
     vertical-align: bottom;
-    overflow: hidden;
 }
 
-.list-item.Completed {
-    color: rgba(47, 175, 64, 0.5);
-    content: '✔';
-}
 
 .list-item.Completed .item-content {
     text-decoration: line-through;
