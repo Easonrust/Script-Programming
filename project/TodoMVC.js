@@ -73,16 +73,21 @@ function createItem(message) {
             function finish() {
                 if (finished) return;
                 finished = true;
-                item.removeChild(editBox);
+                editBox.remove();
             }
 
             editBox.addEventListener('blur', function () {
+                itemContent.innerHTML = this.value;
+                var id = item.id.split('_')[1];
+                console.log('id:' + id);
+                model.data.items[id].msg = this.value;
+                model.flush();
+                update();
                 finish();
             });
 
             editBox.addEventListener('keyup', function (ev) {
                 if (ev.keyCode == 13) {
-                    itemContent.innerHTML = this.value;
                     var id = item.id.split('_')[1];
                     console.log('id:' + id);
                     model.data.items[id].msg = this.value;
@@ -96,8 +101,8 @@ function createItem(message) {
                 //阻止事件冒泡
                 ev.stopPropagation()
             })
-
-            item.appendChild(editBox);
+            itemContent.innerHTML = '';
+            itemContent.appendChild(editBox);
             editBox.focus();
             e.preventDefault();
         }, 800);
