@@ -107,8 +107,9 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     height: 300px;
-    overflow: scroll;
-    -webkit-overflow-scrolling: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* -webkit-overflow-scrolling: auto; */
     /*overflow: auto;*/
 }
 
@@ -179,7 +180,7 @@ body {
 .item-content {
     float: left;
     height: 40px;
-    width: 60%;
+    width: 80%;
     min-width: 160px;
     line-height: 40px;
     margin: 5px 0;
@@ -195,7 +196,7 @@ body {
     height: 20px;
 
     position: absolute;
-    right:-50px;
+    right:-30px;
 
     line-height: 20px;
 
@@ -279,4 +280,7 @@ body {
 	transform:rotate(-45deg);
 }
 
-
+.swipeleft {
+    transform: translateX(-15%);
+    -webkit-transform: translateX(-15%);
+}

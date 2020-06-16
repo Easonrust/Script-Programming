@@ -113,10 +113,12 @@ function createItem(message) {
 
 
 
-    
+    var x, y, X, Y, swipeX, swipeY;
 
     item.addEventListener("touchstart", function (e) {
         console.log('touchstart');
+        x = event.changedTouches[0].pageX;
+        e.stopPropagation();
         timer = setTimeout(function () {
             console.log('LongPress');
             var editBox = document.createElement('input');
@@ -154,7 +156,7 @@ function createItem(message) {
             editBox.addEventListener('touchend', function (ev) {
 
                 //阻止事件冒泡
-                ev.stopPropagation()
+                ev.stopPropagation();
             })
             itemContent.innerHTML = '';
             itemContent.appendChild(editBox);
@@ -166,6 +168,20 @@ function createItem(message) {
         console.log('touchmove');
         clearTimeout(timer);
         timer = 0;
+
+        X = event.changedTouches[0].pageX;
+
+
+        // event.stopPropagation();
+        if (X - x > 10) { //右滑
+            // event.preventDefault();
+            item.classList.remove("swipeleft");
+        }
+        if (x - X > 10) { //左滑
+            // event.preventDefault();
+            item.classList.add("swipeleft"); //左滑展开
+        }
+
     });
     item.addEventListener("touchend", function (e) {
         console.log('touchend');
