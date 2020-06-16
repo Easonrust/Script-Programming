@@ -179,11 +179,13 @@ body {
 .item-content {
     float: left;
     height: 40px;
-    width: 70%;
+    width: 60%;
     min-width: 160px;
     line-height: 40px;
     margin: 5px 0;
     text-align: left;
+    overflow: scroll;
+    margin-right: 40px;
 }
 
 .item-remove {
@@ -231,3 +233,46 @@ body {
 .filters li a.selected {
     font-weight: bolder;
 }
+
+.tui-checkbox:checked {
+	background:red;
+}
+.tui-checkbox {
+	width:15px;
+	height:15px;
+	background-color:#ffffff;
+	border:solid 1px #dddddd;
+	-webkit-border-radius:50%;
+	border-radius:50%;
+	font-size:0.8rem;
+	margin:0;
+	padding:0;
+	position:relative;
+	display:inline-block;
+	vertical-align:top;
+	cursor:default;
+	-webkit-appearance:none;
+	-webkit-user-select:none;
+	user-select:none;
+	-webkit-transition:background-color ease 0.1s;
+    transition:background-color ease 0.1s;
+    margin: 18px auto;
+}
+.tui-checkbox:checked::after {
+	content:'';
+	top:10px;
+	left:5px;
+	position:absolute;
+	background:transparent;
+	border:#fff solid 2px;
+	border-top:none;
+	border-right:none;
+	height:6px;
+	width:10px;
+	-moz-transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+}
+
+

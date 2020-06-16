@@ -57,9 +57,21 @@ function createItem(message) {
     itemRemove.classList.add('item-remove');
     itemRemove.innerHTML = '&#10005';
 
+    let itemLable = document.createElement('label');
+    itemLable.innerHTML = '<input name="checkbox" value="Item 1" type="checkbox" class="tui-checkbox ">';
+
 
     item.appendChild(itemContent);
     item.appendChild(itemRemove);
+    item.appendChild(itemLable);
+
+    itemLable.addEventListener("touchend", function (ev) {
+        ev.stopPropagation();
+    });
+
+    itemLable.addEventListener("touchstart", function (ev) {
+        ev.stopPropagation();
+    });
 
 
 
@@ -152,20 +164,23 @@ function createItem(message) {
 
 function addNewItem() {
     let content = $('#input-content');
-    let message = content.value;
-    if (message == '') {
+    var message = content.value.split("+");
+    if (!message) {
         console.warn('message is empty');
         return;
+    } else {
+        for (let i = 0; i < message.length; ++i) {
+            let newItem = {
+                msg: message[i],
+                state: CL_ACTIVE
+            };
+            console.log('message:' + message[i]);
+            model.data.items.push(newItem);
+            model.flush();
+            update();
+            content.value = '';
+        }
     }
-    let newItem = {
-        msg: message,
-        state: CL_ACTIVE
-    };
-    console.log('message:' + message);
-    model.data.items.push(newItem);
-    model.flush();
-    update();
-    content.value = '';
 }
 
 function clearCompletedItems() {
