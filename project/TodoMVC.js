@@ -4,6 +4,8 @@ var model = window.model;
 const CL_COMPLETED = 'Completed';
 const CL_SELECTED = 'selected';
 const CL_ACTIVE = 'Active';
+const CL_URGENT = 'Urgent';
+const CL_INURGENT = 'inUrgent';
 
 // Search helper
 var $ = function (sel) {
@@ -24,14 +26,21 @@ function update() {
 
     for (let i = 0; i < items.length; ++i) {
         let item = items[i];
-        if (item.state == filter || filter == 'All') {
+        if (item.state == filter || filter == 'All' || item.urgent == filter) {
             let tempItem = createItem(item.msg);
             tempItem.id = 'item_' + i;
             tempItem.classList.add(item.state);
             //console.log(tempItem.id);
+            if (item.urgent == CL_URGENT) {
+                tempItem.querySelector('.tui-checkbox').checked = true;
+            } else {
+                tempItem.querySelector('.tui-checkbox').checked = false;
+            }
             if (item.state == CL_ACTIVE) {
+                tempItem.querySelector('.tui-checkbox').disabled = false;
                 list.insertBefore(tempItem, list.firstChild);
             } else {
+                tempItem.querySelector('.tui-checkbox').disabled = true;
                 list.appendChild(tempItem);
             }
         }
@@ -58,12 +67,24 @@ function createItem(message) {
     itemRemove.innerHTML = '&#10005';
 
     let itemLable = document.createElement('label');
-    itemLable.innerHTML = '<input name="checkbox" value="Item 1" type="checkbox" class="tui-checkbox ">';
+    itemLable.innerHTML = '<input name="checkbox" value="Item 1" type="checkbox" class="tui-checkbox">';
 
 
     item.appendChild(itemContent);
     item.appendChild(itemRemove);
     item.appendChild(itemLable);
+
+    itemLable.querySelector('.tui-checkbox').onchange = (function (ev) {
+        let id = item.id.split('_')[1]
+        if (model.data.items[id].urgent == CL_INURGENT) {
+            model.data.items[id].urgent = CL_URGENT;
+        } else {
+            model.data.items[id].urgent = CL_INURGENT;
+        }
+        model.flush();
+        update();
+        ev.stopPropagation();
+    });
 
     itemLable.addEventListener("touchend", function (ev) {
         ev.stopPropagation();
@@ -137,9 +158,11 @@ function createItem(message) {
             if (item.classList.contains(CL_COMPLETED)) {
                 item.classList.remove(CL_COMPLETED);
                 model.data.items[id].state = CL_ACTIVE;
+                model.data.items[id].urgent = CL_INURGENT;
             } else {
                 item.classList.remove(CL_ACTIVE);
                 model.data.items[id].state = CL_COMPLETED;
+                model.data.items[id].urgent = CL_INURGENT;
             }
             model.flush();
             update();
@@ -172,7 +195,8 @@ function addNewItem() {
         for (let i = 0; i < message.length; ++i) {
             let newItem = {
                 msg: message[i],
-                state: CL_ACTIVE
+                state: CL_ACTIVE,
+                urgent: CL_INURGENT
             };
             console.log('message:' + message[i]);
             model.data.items.push(newItem);
