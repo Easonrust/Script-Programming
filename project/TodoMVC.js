@@ -29,7 +29,11 @@ function update() {
             tempItem.id = 'item_' + i;
             tempItem.classList.add(item.state);
             //console.log(tempItem.id);
-            list.insertBefore(tempItem, list.firstChild);
+            if (item.state == CL_ACTIVE) {
+                list.insertBefore(tempItem, list.firstChild);
+            } else {
+                list.appendChild(tempItem);
+            }
         }
     }
     //console.log('items.length:'+items.length);
