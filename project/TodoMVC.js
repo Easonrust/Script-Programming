@@ -1,18 +1,18 @@
 // model for localstorage
 var model = window.model;
 // Set some const status string
-const CL_COMPLETED = 'Completed';
-const CL_SELECTED = 'selected';
-const CL_ACTIVE = 'Active';
-const CL_URGENT = 'Urgent';
-const CL_INURGENT = 'inUrgent';
+const COMPLETED = 'Completed';
+const SELECTED = 'selected';
+const ACTIVE = 'Active';
+const URGENT = 'Urgent';
+const INURGENT = 'inUrgent';
 
 // Search helper
-var $ = function (sel) {
-    return document.querySelector(sel);
+var $ = function (el) {
+    return document.querySelector(el);
 };
-var $All = function (sel) {
-    return document.querySelectorAll(sel);
+var $All = function (el) {
+    return document.querySelectorAll(el);
 };
 // Update the list
 function update() {
@@ -24,6 +24,8 @@ function update() {
     // Clear the list
     list.innerHTML = '';
 
+
+
     for (let i = 0; i < items.length; ++i) {
         let item = items[i];
         if (item.state == filter || filter == 'All' || item.urgent == filter) {
@@ -31,12 +33,12 @@ function update() {
             tempItem.id = 'item_' + i;
             tempItem.classList.add(item.state);
             //console.log(tempItem.id);
-            if (item.urgent == CL_URGENT) {
+            if (item.urgent == URGENT) {
                 tempItem.querySelector('.tui-checkbox').checked = true;
             } else {
                 tempItem.querySelector('.tui-checkbox').checked = false;
             }
-            if (item.state == CL_ACTIVE) {
+            if (item.state == ACTIVE) {
                 tempItem.querySelector('.tui-checkbox').disabled = false;
                 list.insertBefore(tempItem, list.firstChild);
             } else {
@@ -49,10 +51,25 @@ function update() {
     console.log('list.children.length:' + list.children.length);
 
     active.innerHTML = list.children.length + ' items left';
+
+    if (list.children.length == 0) {
+        if (filter == 'All') {
+            list.innerHTML = "There's no todos, try to add something!";
+        } else if (filter == 'Active') {
+            list.innerHTML = "Well done, everything is completed!"
+        } else if (filter == 'Completed') {
+            list.innerHTML = "You have not completed anything yet"
+        } else if (filter == 'Urgent') {
+            list.innerHTML = "There's nothing urgent, maybe you can relax"
+        }
+    }
 }
 
 //创建todo条目
 function createItem(message) {
+
+
+
     let item = document.createElement('div');
     item.classList.add('list-item');
 
@@ -76,10 +93,10 @@ function createItem(message) {
 
     itemLable.querySelector('.tui-checkbox').onchange = (function (ev) {
         let id = item.id.split('_')[1]
-        if (model.data.items[id].urgent == CL_INURGENT) {
-            model.data.items[id].urgent = CL_URGENT;
+        if (model.data.items[id].urgent == INURGENT) {
+            model.data.items[id].urgent = URGENT;
         } else {
-            model.data.items[id].urgent = CL_INURGENT;
+            model.data.items[id].urgent = INURGENT;
         }
         model.flush();
         update();
@@ -96,6 +113,7 @@ function createItem(message) {
 
 
 
+    
 
     item.addEventListener("touchstart", function (e) {
         console.log('touchstart');
@@ -155,14 +173,14 @@ function createItem(message) {
         if (timer != 0) {
             let id = item.id.split('_')[1];
 
-            if (item.classList.contains(CL_COMPLETED)) {
-                item.classList.remove(CL_COMPLETED);
-                model.data.items[id].state = CL_ACTIVE;
-                model.data.items[id].urgent = CL_INURGENT;
+            if (item.classList.contains(COMPLETED)) {
+                item.classList.remove(COMPLETED);
+                model.data.items[id].state = ACTIVE;
+                model.data.items[id].urgent = INURGENT;
             } else {
-                item.classList.remove(CL_ACTIVE);
-                model.data.items[id].state = CL_COMPLETED;
-                model.data.items[id].urgent = CL_INURGENT;
+                item.classList.remove(ACTIVE);
+                model.data.items[id].state = COMPLETED;
+                model.data.items[id].urgent = INURGENT;
             }
             model.flush();
             update();
@@ -195,8 +213,8 @@ function addNewItem() {
         for (let i = 0; i < message.length; ++i) {
             let newItem = {
                 msg: message[i],
-                state: CL_ACTIVE,
-                urgent: CL_INURGENT
+                state: ACTIVE,
+                urgent: INURGENT
             };
             console.log('message:' + message[i]);
             model.data.items.push(newItem);
@@ -207,12 +225,12 @@ function addNewItem() {
     }
 }
 
-function clearCompletedItems() {
+function clearCompleted() {
     let items = model.data.items;
     for (let i = items.length - 1; i >= 0; --i) {
         let temp = items[i];
         console.log(i);
-        if (temp.state == CL_COMPLETED) {
+        if (temp.state == COMPLETED) {
             console.log('Delete item ' + i);
             items.splice(i, 1)
         }
@@ -221,19 +239,19 @@ function clearCompletedItems() {
     update();
 }
 
-function selectAllItems() {
+function selectAll() {
     let items = model.data.items;
     let toggleAll = $('.toggle-all');
     let newState;
 
     //console.log('select all');
-    if (toggleAll.classList.contains(CL_SELECTED)) {
-        toggleAll.classList.remove(CL_SELECTED)
-        newState = CL_ACTIVE;
+    if (toggleAll.classList.contains(SELECTED)) {
+        toggleAll.classList.remove(SELECTED)
+        newState = ACTIVE;
     } else {
         //console.log('unselected');
-        toggleAll.classList.add(CL_SELECTED);
-        newState = CL_COMPLETED;
+        toggleAll.classList.add(SELECTED);
+        newState = COMPLETED;
     }
     for (let i = 0; i < items.length; ++i) {
         items[i].state = newState;
@@ -243,32 +261,80 @@ function selectAllItems() {
 }
 
 window.onload = function () {
-    model.init(update);
+    model.init(function () {
+        let filter = model.data.filter;
+        let items = model.data.items;
+        let list = $('#todo-list');
+        let active = $('.todo-count');
 
-    $('#input-content').addEventListener('keyup', function (ev) {
-        if (ev.keyCode != 13) return;
-        addNewItem();
-    }, )
+        // Clear the list
+        list.innerHTML = '';
 
-    $('#add').addEventListener('touchend', addNewItem);
-
-    $('.clear-completed').addEventListener('touchend', clearCompletedItems);
-
-    $('.toggle-all').addEventListener('touchend', selectAllItems);
-
-    let filters = $All('.filters li a');
-    for (let i = 0; i < filters.length; ++i) {
-        (function (filter) {
-            filter.addEventListener('touchend', function () {
-                for (let j = 0; j < filters.length; ++j) {
-                    filters[j].classList.remove(CL_SELECTED);
+        for (let i = 0; i < items.length; ++i) {
+            let item = items[i];
+            if (item.state == filter || filter == 'All' || item.urgent == filter) {
+                let tempItem = createItem(item.msg);
+                tempItem.id = 'item_' + i;
+                tempItem.classList.add(item.state);
+                //console.log(tempItem.id);
+                if (item.urgent == URGENT) {
+                    tempItem.querySelector('.tui-checkbox').checked = true;
+                } else {
+                    tempItem.querySelector('.tui-checkbox').checked = false;
                 }
-                console.log('filter:' + filter.innerHTML);
-                filter.classList.add(CL_SELECTED);
-                model.data.filter = filter.innerHTML;
-                model.flush();
-                update();
-            });
-        })(filters[i])
-    }
+                if (item.state == ACTIVE) {
+                    tempItem.querySelector('.tui-checkbox').disabled = false;
+                    list.insertBefore(tempItem, list.firstChild);
+                } else {
+                    tempItem.querySelector('.tui-checkbox').disabled = true;
+                    list.appendChild(tempItem);
+                }
+            }
+        }
+        //console.log('items.length:'+items.length);
+        console.log('list.children.length:' + list.children.length);
+
+
+        active.innerHTML = list.children.length + ' items left';
+
+        if (list.children.length == 0) {
+            if (filter == 'All') {
+                list.innerHTML = "There's no todos, try to add something!";
+            } else if (filter == 'Active') {
+                list.innerHTML = "Well done, everything is completed!"
+            } else if (filter == 'Completed') {
+                list.innerHTML = "You have not completed anything yet"
+            } else if (filter == 'Urgent') {
+                list.innerHTML = "There's nothing urgent, maybe you can relax"
+            }
+        }
+        $('#input-content').addEventListener('keyup', function (ev) {
+            if (ev.keyCode != 13) return;
+            addNewItem();
+        }, )
+
+        $('#add').addEventListener('touchend', addNewItem);
+
+        $('.clear-completed').addEventListener('touchend', clearCompleted);
+
+        $('.toggle-all').addEventListener('touchend', selectAll);
+
+        let filters = $All('.filters li a');
+        for (let i = 0; i < filters.length; ++i) {
+            (function (filter) {
+                filter.addEventListener('touchend', function () {
+                    for (let j = 0; j < filters.length; ++j) {
+                        filters[j].classList.remove(SELECTED);
+                    }
+                    console.log('filter:' + filter.innerHTML);
+                    filter.classList.add(SELECTED);
+                    model.data.filter = filter.innerHTML;
+                    model.flush();
+                    update();
+                });
+            })(filters[i])
+        }
+    });
+
+
 }

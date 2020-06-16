@@ -193,6 +193,10 @@ body {
     color: rgba(204, 66, 135, 0.5);
     width: 20px;
     height: 20px;
+
+    position: absolute;
+    right:-50px;
+
     line-height: 20px;
 
     background: white;
