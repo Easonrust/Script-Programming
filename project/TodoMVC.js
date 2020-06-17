@@ -118,14 +118,17 @@ function createItem(message) {
     item.addEventListener("touchstart", function (e) {
         console.log('touchstart');
         x = event.changedTouches[0].pageX;
+        e.preventDefault();
         e.stopPropagation();
+        let inputvalue = itemContent.innerHTML;
         timer = setTimeout(function () {
             console.log('LongPress');
             var editBox = document.createElement('input');
             var finished = false;
             editBox.setAttribute('class', 'item-content');
             editBox.setAttribute('type', 'text');
-            editBox.setAttribute('value', itemContent.innerHTML);
+            editBox.setAttribute('value', inputvalue);
+            editBox.setAttribute('autofocus', 'autofocus');
 
             function finish() {
                 if (finished) return;
@@ -158,10 +161,14 @@ function createItem(message) {
                 //阻止事件冒泡
                 ev.stopPropagation();
             })
+
+            editBox.addEventListener('touchstart', function (ev) {
+
+                //阻止事件冒泡
+                ev.stopPropagation();
+            })
             itemContent.innerHTML = '';
             itemContent.appendChild(editBox);
-            editBox.focus();
-            e.preventDefault();
         }, 800);
     });
     item.addEventListener("touchmove", function (e) {
@@ -170,7 +177,7 @@ function createItem(message) {
         timer = 0;
 
         X = event.changedTouches[0].pageX;
-
+        e.stopImmediatePropagation();
 
         // event.stopPropagation();
         if (X - x > 10) { //右滑
@@ -184,6 +191,7 @@ function createItem(message) {
 
     });
     item.addEventListener("touchend", function (e) {
+        e.stopImmediatePropagation();
         console.log('touchend');
         clearTimeout(timer);
         if (timer != 0) {
@@ -223,7 +231,6 @@ function addNewItem() {
     let content = $('#input-content');
     var message = content.value.split("+");
     if (!message) {
-        console.warn('message is empty');
         return;
     } else {
         for (let i = 0; i < message.length; ++i) {
@@ -234,9 +241,10 @@ function addNewItem() {
             };
             console.log('message:' + message[i]);
             model.data.items.push(newItem);
+            content.value = '';
             model.flush();
             update();
-            content.value = '';
+
         }
     }
 }

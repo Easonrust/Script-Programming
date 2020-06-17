@@ -59,7 +59,15 @@ body {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .2);
 }
 
+input:-moz-placeholder {
+    color: #6A4028;
+    font-style: italic;
+}
 
+::-webkit-input-placeholder {
+    color: #6A4028;
+    font-style: italic;
+}
 
 
 
@@ -196,7 +204,7 @@ body {
     height: 20px;
 
     position: absolute;
-    right:-30px;
+    right: -30px;
 
     line-height: 20px;
 
@@ -240,44 +248,46 @@ body {
 }
 
 .tui-checkbox:checked {
-	background:red;
+    background: red;
 }
+
 .tui-checkbox {
-	width:15px;
-	height:15px;
-	background-color:#ffffff;
-	border:solid 1px #dddddd;
-	-webkit-border-radius:50%;
-	border-radius:50%;
-	font-size:0.8rem;
-	margin:0;
-	padding:0;
-	position:relative;
-	display:inline-block;
-	vertical-align:top;
-	cursor:default;
-	-webkit-appearance:none;
-	-webkit-user-select:none;
-	user-select:none;
-	-webkit-transition:background-color ease 0.1s;
-    transition:background-color ease 0.1s;
+    width: 15px;
+    height: 15px;
+    background-color: #ffffff;
+    border: solid 1px #dddddd;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: default;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-transition: background-color ease 0.1s;
+    transition: background-color ease 0.1s;
     margin: 18px auto;
 }
+
 .tui-checkbox:checked::after {
-	content:'';
-	top:10px;
-	left:5px;
-	position:absolute;
-	background:transparent;
-	border:#fff solid 2px;
-	border-top:none;
-	border-right:none;
-	height:6px;
-	width:10px;
-	-moz-transform:rotate(-45deg);
-	-ms-transform:rotate(-45deg);
-	-webkit-transform:rotate(-45deg);
-	transform:rotate(-45deg);
+    content: '';
+    top: 10px;
+    left: 5px;
+    position: absolute;
+    background: transparent;
+    border: #fff solid 2px;
+    border-top: none;
+    border-right: none;
+    height: 6px;
+    width: 10px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
 
 .swipeleft {
