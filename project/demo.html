@@ -6,146 +6,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>js侧滑显示删除按钮</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-size: .14rem;
-        }
-
-        li {
+        ul {
             list-style: none;
+            margin: 200px;
         }
 
-        i {
-            font-style: normal;
-        }
-
-        a {
-            color: #393939;
-            text-decoration: none;
-        }
-
-        .list {
-            overflow: hidden;
-            padding-left: .3rem;
-        }
-
-        .list li {
-            width: 120%;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .list li p {
-            overflow: hidden;
-            height: .88rem;
-            line-height: .88rem;
-            -webkit-transition: all 0.3s linear;
-            transition: all 0.3s linear;
-        }
-
-        .list li a {
-            display: inline-block;
-            width: 85%;
-        }
-
-        .list li i {
-            float: right;
-            width: 15%;
-            text-align: center;
-            background: #E2421B;
-            color: #fff;
-        }
-
-        .swipeleft {
-            transform: translateX(-15%);
-            -webkit-transform: translateX(-15%);
+        .ele {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #999;
+            background: #EA6E59;
+            margin-top: 2px;
+            border-radius: 10px;
+            padding-left: 10px;
+            color: white;
+            cursor: move;
         }
     </style>
-    <script>
-        //计算根节点HTML的字体大小
-        function resizeRoot() {
-            var deviceWidth = document.documentElement.clientWidth,
-                num = 750,
-                num1 = num / 100;
-            if (deviceWidth > num) {
-                deviceWidth = num;
-            }
-            document.documentElement.style.fontSize = deviceWidth / num1 + "px";
-        }
-        //根节点HTML的字体大小初始化
-        resizeRoot();
 
-        window.onresize = function () {
-            resizeRoot();
-        };
-    </script>
 </head>
 
 <body>
-    <section>
-        <div class="list">
-            <ul>
-                <li>
-                    <p><a href="#">侧滑显示删除按钮</a><i>删除</i></p>
-                </li>
-                <li>
-                    <p><a href="#">侧滑显示删除按钮</a><i>删除</i></p>
-                </li>
-                <li>
-                    <p><a href="#">侧滑显示删除按钮</a><i>删除</i></p>
-                </li>
-            </ul>
-        </div>
-        <script>
-            //侧滑显示删除按钮
-            var expansion = null; //是否存在展开的list
-            var container = document.querySelectorAll('.list li p');
-            for (var i = 0; i < container.length; i++) {
-                var x, y, X, Y, swipeX, swipeY;
-                container[i].addEventListener('touchstart', function (event) {
-                    x = event.changedTouches[0].pageX;
-                    y = event.changedTouches[0].pageY;
-                    swipeX = true;
-                    swipeY = true;
-                    if (expansion) { //判断是否展开，如果展开则收起
-                        expansion.className = "";
+    <ul id="container">
+        <li class="ele" draggable="true">1</li>
+        <li class="ele" draggable="true">2</li>
+        <li class="ele" draggable="true">3</li>
+        <li class="ele" draggable="true">4</li>
+    </ul>
+</body>
+<script>
+    var node = document.querySelector("#container");
+    var draging = null;
+    //使用事件委托，将li的事件委托给ul
+    node.ondragstart = function (event) {
+        //console.log("start");
+        //firefox设置了setData后元素才能拖动！！！！
+        event.dataTransfer.setData("te", event.target.innerText); //不能使用text，firefox会打开新tab
+        //event.dataTransfer.setData("self", event.target);
+        draging = event.target;
+    }
+    node.ondragover = function (event) {
+        //console.log("onDrop over");
+        event.preventDefault();
+        var target = event.target;
+        //因为dragover会发生在ul上，所以要判断是不是li
+        if (target.nodeName === "LI") {
+            if (target !== draging) {
+                var targetRect = target.getBoundingClientRect();
+                var dragingRect = draging.getBoundingClientRect();
+                if (target) {
+                    if (target.animated) {
+                        return;
                     }
-                });
-                container[i].addEventListener('touchmove', function (event) {
-                    X = event.changedTouches[0].pageX;
-                    Y = event.changedTouches[0].pageY;
-                    // 左右滑动
-                    if (swipeX && Math.abs(X - x) - Math.abs(Y - y) > 0) {
-                        // 阻止事件冒泡
-                        event.stopPropagation();
-                        if (X - x > 10) { //右滑
-                            event.preventDefault();
-                            this.className = ""; //右滑收起
-                        }
-                        if (x - X > 10) { //左滑
-                            event.preventDefault();
-                            this.className = "swipeleft"; //左滑展开
-                            expansion = this;
-                        }
-                        swipeY = false;
-                    }
-                    // 上下滑动
-                    if (swipeY && Math.abs(X - x) - Math.abs(Y - y) < 0) {
-                        swipeX = false;
-                    }
-                });
+                }
+                if (_index(draging) < _index(target)) {
+                    target.parentNode.insertBefore(draging, target.nextSibling);
+                } else {
+                    target.parentNode.insertBefore(draging, target);
+                }
+                _animate(dragingRect, draging);
+                _animate(targetRect, target);
+            }
+        }
+    }
+    //获取元素在父元素中的index
+    function _index(el) {
+        var index = 0;
+
+        if (!el || !el.parentNode) {
+            return -1;
+        }
+
+        while (el && (el = el.previousElementSibling)) {
+            //console.log(el);
+            index++;
+        }
+
+        return index;
+    }
+
+    function _animate(prevRect, target) {
+        var ms = 300;
+
+        if (ms) {
+            var currentRect = target.getBoundingClientRect();
+
+            if (prevRect.nodeType === 1) {
+                prevRect = prevRect.getBoundingClientRect();
             }
 
-            var i = document.querySelectorAll('.list li i');
-            i.forEach(function (item, index) {
-                i[index].onclick = function () {
-                    this.parentNode.parentNode.remove();
-                };
-            });
-        </script>
-</body>
+            _css(target, 'transition', 'none');
+            _css(target, 'transform', 'translate3d(' +
+                (prevRect.left - currentRect.left) + 'px,' +
+                (prevRect.top - currentRect.top) + 'px,0)'
+            );
+
+            target.offsetWidth; // 触发重绘
+            //放在timeout里面也可以
+            // setTimeout(function() {
+            //     _css(target, 'transition', 'all ' + ms + 'ms');
+            //     _css(target, 'transform', 'translate3d(0,0,0)');
+            // }, 0);
+            _css(target, 'transition', 'all ' + ms + 'ms');
+            _css(target, 'transform', 'translate3d(0,0,0)');
+
+            clearTimeout(target.animated);
+            target.animated = setTimeout(function () {
+                _css(target, 'transition', '');
+                _css(target, 'transform', '');
+                target.animated = false;
+            }, ms);
+        }
+    }
+    //给元素添加style
+    function _css(el, prop, val) {
+        var style = el && el.style;
+
+        if (style) {
+            if (val === void 0) {
+                if (document.defaultView && document.defaultView.getComputedStyle) {
+                    val = document.defaultView.getComputedStyle(el, '');
+                } else if (el.currentStyle) {
+                    val = el.currentStyle;
+                }
+
+                return prop === void 0 ? val : val[prop];
+            } else {
+                if (!(prop in style)) {
+                    prop = '-webkit-' + prop;
+                }
+
+                style[prop] = val + (typeof val === 'string' ? '' : 'px');
+            }
+        }
+    }
+</script>
 
 </html>
