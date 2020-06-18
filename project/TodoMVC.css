@@ -21,7 +21,9 @@ body {
 }
 
 
-
+.footer li {
+    cursor: pointer;
+}
 
 
 
@@ -71,15 +73,7 @@ input:-moz-placeholder {
 
 
 
-#add {
-    height: 40px;
-    width: 40px;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 8px;
-    position: relative;
-    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .2);
-}
+
 
 #add {
     border-radius: 50px;
@@ -89,6 +83,8 @@ input:-moz-placeholder {
     font-size: 30px;
     font-weight: lighter;
     background: burlywood;
+    vertical-align: middle;
+    margin-left: 8px;
 }
 
 

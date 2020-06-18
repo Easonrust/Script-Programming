@@ -24,7 +24,7 @@ function update() {
     // Clear the list
     list.innerHTML = '';
 
-
+    console.log(items);
 
     for (let i = 0; i < items.length; ++i) {
         let item = items[i];
@@ -41,9 +41,11 @@ function update() {
             if (item.state == ACTIVE) {
                 tempItem.querySelector('.tui-checkbox').disabled = false;
                 list.insertBefore(tempItem, list.firstChild);
+                console.log("+1");
             } else {
                 tempItem.querySelector('.tui-checkbox').disabled = true;
                 list.appendChild(tempItem);
+                console.log("+1");
             }
         }
     }
@@ -159,21 +161,24 @@ function createItem(message) {
             editBox.addEventListener('touchend', function (ev) {
 
                 //阻止事件冒泡
+                ev.preventDefault();
                 ev.stopPropagation();
             })
 
             editBox.addEventListener('touchstart', function (ev) {
 
                 //阻止事件冒泡
+                ev.preventDefault();
                 ev.stopPropagation();
             })
             itemContent.innerHTML = '';
             itemContent.appendChild(editBox);
+            editBox.focus();
         }, 800);
     });
     item.addEventListener("touchmove", function (e) {
         console.log('touchmove');
-        clearTimeout(timer);
+        // clearTimeout(timer);
         timer = 0;
 
         X = event.changedTouches[0].pageX;
@@ -229,10 +234,11 @@ function createItem(message) {
 
 function addNewItem() {
     let content = $('#input-content');
-    var message = content.value.split("+");
-    if (!message) {
+    if (content.value == '') {
         return;
     } else {
+        var message = content.value.split("+");
+
         for (let i = 0; i < message.length; ++i) {
             let newItem = {
                 msg: message[i],
@@ -246,6 +252,7 @@ function addNewItem() {
             update();
 
         }
+
     }
 }
 
