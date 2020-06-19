@@ -76,15 +76,19 @@ input:-moz-placeholder {
 
 
 #add {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    position: relative;
     border-radius: 50px;
     box-shadow: none;
     border: none;
     color: white;
     font-size: 30px;
     font-weight: lighter;
-    background: burlywood;
+    background: wheat;
     vertical-align: middle;
-    margin-left: 8px;
+    text-align: center;
 }
 
 
@@ -190,7 +194,17 @@ input:-moz-placeholder {
     margin: 5px 0;
     text-align: left;
     overflow: scroll;
-    margin-right: 40px;
+    margin-right: 25px;
+}
+
+.item-edit {
+    float: left;
+    height: 40px;
+    width: 80%;
+    min-width: 160px;
+    line-height: 40px;
+    margin: 5px 0;
+    margin-right: 10px;
 }
 
 .item-remove {
@@ -200,7 +214,7 @@ input:-moz-placeholder {
     height: 20px;
 
     position: absolute;
-    right: -30px;
+    right: -40px;
 
     line-height: 20px;
 
@@ -248,8 +262,9 @@ input:-moz-placeholder {
 }
 
 .tui-checkbox {
-    width: 15px;
-    height: 15px;
+    width: 30px;
+
+    height: 30px;
     background-color: #ffffff;
     border: solid 1px #dddddd;
     -webkit-border-radius: 50%;
@@ -259,19 +274,22 @@ input:-moz-placeholder {
     padding: 0;
     position: relative;
     display: inline-block;
-    vertical-align: top;
+    /* vertical-align: top; */
     cursor: default;
     -webkit-appearance: none;
     -webkit-user-select: none;
     user-select: none;
     -webkit-transition: background-color ease 0.1s;
     transition: background-color ease 0.1s;
-    margin: 18px auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin-top: 10px;
+    /* margin-bottom: 4px; */
 }
 
 .tui-checkbox:checked::after {
     content: '';
-    top: 10px;
+    top: 100px;
     left: 5px;
     position: absolute;
     background: transparent;

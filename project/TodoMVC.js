@@ -73,6 +73,8 @@ function createItem(message) {
 
 
     let item = document.createElement('div');
+
+
     item.classList.add('list-item');
 
 
@@ -127,10 +129,10 @@ function createItem(message) {
             console.log('LongPress');
             var editBox = document.createElement('input');
             var finished = false;
-            editBox.setAttribute('class', 'item-content');
+            editBox.setAttribute('class', 'item-edit');
             editBox.setAttribute('type', 'text');
             editBox.setAttribute('value', inputvalue);
-            editBox.setAttribute('autofocus', 'autofocus');
+            // editBox.setAttribute('autofocus', 'autofocus');
 
             function finish() {
                 if (finished) return;
@@ -168,17 +170,20 @@ function createItem(message) {
             editBox.addEventListener('touchstart', function (ev) {
 
                 //阻止事件冒泡
+                editBox.focus();
                 ev.preventDefault();
                 ev.stopPropagation();
             })
-            itemContent.innerHTML = '';
-            itemContent.appendChild(editBox);
+            itemContent.remove();
+
+            item.insertBefore(editBox, item.firstChild);
             editBox.focus();
+
         }, 800);
     });
     item.addEventListener("touchmove", function (e) {
         console.log('touchmove');
-        // clearTimeout(timer);
+        clearTimeout(timer);
         timer = 0;
 
         X = event.changedTouches[0].pageX;
