@@ -70,7 +70,7 @@ function update() {
 //创建todo条目
 function createItem(message) {
 
-
+    Message = message.split("@");
 
     let item = document.createElement('div');
 
@@ -81,7 +81,23 @@ function createItem(message) {
 
     let itemContent = document.createElement('div');
     itemContent.classList.add('item-content');
-    itemContent.innerHTML = message;
+    itemContent.innerHTML = Message[0];
+
+    if (Message.length > 1 && Date.parse(Message[1])) {
+        // let date = Message[1].split("/");
+        // console.log(Date.parse(Message[1]));
+        let d = new Date()
+        let delta_day = parseInt((Date.parse(Message[1]) - d.getTime()) / (1000 * 60 * 60 * 24));
+        if (delta_day <= 5) {
+            itemContent.classList.add('danger');
+        } else if (delta_day <= 10) {
+            itemContent.classList.add('warn');
+        } else {
+            itemContent.classList.add('normal');
+        }
+    } else {
+        itemContent.classList.add('normal');
+    }
 
     let itemRemove = document.createElement('div');
     itemRemove.classList.add('item-remove');
