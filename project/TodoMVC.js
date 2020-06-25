@@ -6,6 +6,8 @@ const SELECTED = 'selected';
 const ACTIVE = 'Active';
 const URGENT = 'Urgent';
 const INURGENT = 'inUrgent';
+let swipe = true;
+
 
 // Search helper
 var $ = function (el) {
@@ -34,21 +36,27 @@ function update() {
             tempItem.classList.add(item.state);
             //console.log(tempItem.id);
             if (item.urgent == URGENT) {
-                tempItem.querySelector('.tui-checkbox').checked = true;
+                tempItem.querySelector('.urgent-checkbox').checked = true;
             } else {
-                tempItem.querySelector('.tui-checkbox').checked = false;
+                tempItem.querySelector('.urgent-checkbox').checked = false;
             }
+
+
+
+
             if (item.state == ACTIVE) {
-                tempItem.querySelector('.tui-checkbox').disabled = false;
+                tempItem.querySelector('.urgent-checkbox').disabled = false;
                 list.insertBefore(tempItem, list.firstChild);
-                console.log("+1");
             } else {
-                tempItem.querySelector('.tui-checkbox').disabled = true;
+                tempItem.querySelector('.urgent-checkbox').disabled = true;
                 list.appendChild(tempItem);
-                console.log("+1");
+
             }
         }
+
     }
+
+
     //console.log('items.length:'+items.length);
     console.log('list.children.length:' + list.children.length);
 
@@ -98,20 +106,27 @@ function createItem(message) {
     } else {
         itemContent.classList.add('normal');
     }
+    let itemDate = document.createElement('div');
+    itemDate.classList.add('item-top');
+    if (Message.length > 1) {
+        itemDate.innerHTML = Message[1];
+    } else {
+        itemDate.innerHTML = '';
+    }
 
     let itemRemove = document.createElement('div');
     itemRemove.classList.add('item-remove');
     itemRemove.innerHTML = '&#10005';
 
     let itemLable = document.createElement('label');
-    itemLable.innerHTML = '<input name="checkbox" value="Item 1" type="checkbox" class="tui-checkbox">';
+    itemLable.innerHTML = '<input name="checkbox" value="Item 1" type="checkbox" class="urgent-checkbox">';
 
-
+    item.appendChild(itemDate);
     item.appendChild(itemContent);
     item.appendChild(itemRemove);
     item.appendChild(itemLable);
 
-    itemLable.querySelector('.tui-checkbox').onchange = (function (ev) {
+    itemLable.querySelector('.urgent-checkbox').onchange = (function (ev) {
         let id = item.id.split('_')[1]
         if (model.data.items[id].urgent == INURGENT) {
             model.data.items[id].urgent = URGENT;
@@ -133,12 +148,13 @@ function createItem(message) {
 
 
 
-    var x, y, X, Y, swipeX, swipeY;
+    var x, y, X, Y;
 
     item.addEventListener("touchstart", function (e) {
+
         console.log('touchstart');
         x = event.changedTouches[0].pageX;
-        e.preventDefault();
+        // e.preventDefault();
         e.stopPropagation();
         let inputvalue = itemContent.innerHTML;
         timer = setTimeout(function () {
@@ -208,15 +224,26 @@ function createItem(message) {
         // event.stopPropagation();
         if (X - x > 10) { //右滑
             // event.preventDefault();
+            if (!swipe) {
+                item.classList.add("swiperight");
+                swipe = true;
+            }
             item.classList.remove("swipeleft");
+
         }
+
         if (x - X > 10) { //左滑
             // event.preventDefault();
-            item.classList.add("swipeleft"); //左滑展开
+            if (!swipe) {
+                item.classList.add("swipeleft");
+                swipe = true;
+            }
+            item.classList.remove("swiperight");
         }
 
     });
     item.addEventListener("touchend", function (e) {
+        swipe = false;
         e.stopImmediatePropagation();
         console.log('touchend');
         clearTimeout(timer);
@@ -247,8 +274,10 @@ function createItem(message) {
         update();
 
         //阻止事件冒泡
-        ev.stopPropagation()
+        ev.stopPropagation();
+        ev.preventDefault();
     })
+
 
     return item;
 }
@@ -264,7 +293,8 @@ function addNewItem() {
             let newItem = {
                 msg: message[i],
                 state: ACTIVE,
-                urgent: INURGENT
+                urgent: INURGENT,
+                date: null
             };
             console.log('message:' + message[i]);
             model.data.items.push(newItem);
@@ -330,15 +360,15 @@ window.onload = function () {
                 tempItem.classList.add(item.state);
                 //console.log(tempItem.id);
                 if (item.urgent == URGENT) {
-                    tempItem.querySelector('.tui-checkbox').checked = true;
+                    tempItem.querySelector('.urgent-checkbox').checked = true;
                 } else {
-                    tempItem.querySelector('.tui-checkbox').checked = false;
+                    tempItem.querySelector('.urgent-checkbox').checked = false;
                 }
                 if (item.state == ACTIVE) {
-                    tempItem.querySelector('.tui-checkbox').disabled = false;
+                    tempItem.querySelector('.urgent-checkbox').disabled = false;
                     list.insertBefore(tempItem, list.firstChild);
                 } else {
-                    tempItem.querySelector('.tui-checkbox').disabled = true;
+                    tempItem.querySelector('.urgent-checkbox').disabled = true;
                     list.appendChild(tempItem);
                 }
             }

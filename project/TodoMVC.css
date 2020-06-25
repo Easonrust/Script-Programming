@@ -117,7 +117,7 @@ input:-moz-placeholder {
     height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
-    /* -webkit-overflow-scrolling: auto; */
+    -webkit-overflow-scrolling: auto;
     /*overflow: auto;*/
 }
 
@@ -188,7 +188,7 @@ input:-moz-placeholder {
 .item-content {
     float: left;
     height: 40px;
-    width: 80%;
+    width: 83%;
     min-width: 160px;
     line-height: 40px;
     margin: 5px 0;
@@ -221,6 +221,22 @@ input:-moz-placeholder {
     background: white;
     vertical-align: bottom;
     font-size: 20pt;
+    margin: 15px auto;
+}
+
+.item-top{
+    float: left;
+    color: rgba(204, 66, 135, 0.5);
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    left: -100px;
+
+    line-height: 20px;
+
+    background: white;
+    vertical-align: bottom;
     margin: 15px auto;
 }
 
@@ -257,11 +273,11 @@ input:-moz-placeholder {
     font-weight: bolder;
 }
 
-.tui-checkbox:checked {
+.urgent-checkbox:checked {
     background: red;
 }
 
-.tui-checkbox {
+.urgent-checkbox {
     width: 30px;
 
     height: 30px;
@@ -287,7 +303,7 @@ input:-moz-placeholder {
     /* margin-bottom: 4px; */
 }
 
-.tui-checkbox:checked::after {
+.urgent-checkbox:checked::after {
     content: '';
     top: 100px;
     left: 5px;
@@ -307,6 +323,11 @@ input:-moz-placeholder {
 .swipeleft {
     transform: translateX(-15%);
     -webkit-transform: translateX(-15%);
+}
+
+.swiperight {
+    transform: translateX(30%);
+    -webkit-transform: translateX(30%);
 }
 
 
