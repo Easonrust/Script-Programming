@@ -6,24 +6,24 @@ const SELECTED = 'selected';
 const ACTIVE = 'Active';
 const URGENT = 'Urgent';
 const INURGENT = 'inUrgent';
-let swipe = true;
+let swipe = false;
 
 
-// Search helper
+
 var $ = function (el) {
     return document.querySelector(el);
 };
 var $All = function (el) {
     return document.querySelectorAll(el);
 };
-// Update the list
+
 function update() {
     let filter = model.data.filter;
     let items = model.data.items;
     let list = $('#todo-list');
     let active = $('.todo-count');
 
-    // Clear the list
+
     list.innerHTML = '';
 
     console.log(items);
@@ -224,7 +224,7 @@ function createItem(message) {
         // event.stopPropagation();
         if (X - x > 10) { //右滑
             // event.preventDefault();
-            if (!swipe) {
+            if (!swipe && !item.classList.contains("swipeleft")) {
                 item.classList.add("swiperight");
                 swipe = true;
             }
@@ -234,7 +234,7 @@ function createItem(message) {
 
         if (x - X > 10) { //左滑
             // event.preventDefault();
-            if (!swipe) {
+            if (!swipe && !item.classList.contains("swiperight")) {
                 item.classList.add("swipeleft");
                 swipe = true;
             }
@@ -244,6 +244,8 @@ function createItem(message) {
     });
     item.addEventListener("touchend", function (e) {
         swipe = false;
+        item.classList.remove("swiperight");
+        // item.classList.remove("swipeleft");
         e.stopImmediatePropagation();
         console.log('touchend');
         clearTimeout(timer);

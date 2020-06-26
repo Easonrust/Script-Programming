@@ -25,10 +25,6 @@ body {
     cursor: pointer;
 }
 
-
-
-
-
 .input {
     text-align: center;
     margin-left: 0;
@@ -72,9 +68,6 @@ input:-moz-placeholder {
 }
 
 
-
-
-
 #add {
     display: inline-block;
     height: 40px;
@@ -90,8 +83,6 @@ input:-moz-placeholder {
     vertical-align: middle;
     text-align: center;
 }
-
-
 
 
 .todo-count {
@@ -121,13 +112,6 @@ input:-moz-placeholder {
     /*overflow: auto;*/
 }
 
-
-
-
-
-
-
-
 .footer {
     color: #554236;
     padding: 10px 15px;
@@ -151,14 +135,6 @@ input:-moz-placeholder {
     font-family: Georgia;
 }
 
-
-
-
-
-
-/* dinghow */
-
-
 .list-item {
     position: relative;
     width: 100%;
@@ -168,7 +144,6 @@ input:-moz-placeholder {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
     vertical-align: bottom;
 }
-
 
 .list-item.Completed .item-content {
     text-decoration: line-through;
@@ -188,7 +163,7 @@ input:-moz-placeholder {
 .item-content {
     float: left;
     height: 40px;
-    width: 83%;
+    width: 80%;
     min-width: 160px;
     line-height: 40px;
     margin: 5px 0;
@@ -213,6 +188,7 @@ input:-moz-placeholder {
     width: 20px;
     height: 20px;
 
+
     position: absolute;
     right: -40px;
 
@@ -224,14 +200,14 @@ input:-moz-placeholder {
     margin: 15px auto;
 }
 
-.item-top{
+.item-top {
     float: left;
     color: rgba(204, 66, 135, 0.5);
     width: 20px;
     height: 20px;
 
     position: absolute;
-    left: -100px;
+    left: -110px;
 
     line-height: 20px;
 
@@ -331,14 +307,15 @@ input:-moz-placeholder {
 }
 
 
-.danger{
-    color:red;
+.danger {
+    color: red;
 }
 
-.normal{
-    color: rgb(0, 255, 98);;
+.normal {
+    color: rgb(0, 255, 98);
+    ;
 }
 
-.warn{
-    color:rgba(255, 102, 0, 0.89);
+.warn {
+    color: rgba(255, 102, 0, 0.89);
 }
